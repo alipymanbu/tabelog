@@ -1,189 +1,27 @@
-## reviewsテーブル
+# tabelog
 
-|Column|Type|Options|
-|------|----|-------|
-|user|references|null: false, foreign_key: true|
-|lunch_dinner|integer|null: false|
-|price|integer|null: false|
-|rate |integer|null: false|
-|food_rate |integer|null: false|
-|service_rate|integer|null: false|
-|atmosphere_rate|integer|null: false|
-|cp_rate|integer|null: false|
-|drink_rate|integer|null: false|
-|title|string|null: false|
-|text|text|null: false|
-|image|references||
-|visit_day|datetime|null: false|
-|share_with|integer|null: false|
-|shop_id|integer|null: false, foreign_key: true|
+本仓库是「tabelog」的安卓版本获取入口，附使用资料索引。
 
-### Association
-- belongs_to :user
-- has_many :likes
-- has_many :images
-- belongs_to :shop
-- has_many :review-tags
-- has_many :tags, through:review-tag
+## 安装文件资源（夸克网盘）
 
-## reservations table
+> **tabelog 安装文件资源（夸克网盘）**：[https://pan.quark.cn/s/b547a6ff5a5e](https://pan.quark.cn/s/b547a6ff5a5e)
 
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-|tel|integer|null: false|
-|email|string|null: false|
-|reserve_date|datetime|null: false|
-|reserve_time|datetime|null: false|
-|people_count|integer|null: false|
-|request|text||
+## 官方项目
 
-### Association
-- belongs_to :user
-- belongs_to :shop
+- 上游项目：[sinobu-kazuya/tabelog](https://github.com/sinobu-kazuya/tabelog)
 
+## 更多资料
 
-## images table
+- [下载与安装教程](https://github.com/alipymanbu/Android/blob/master/%E5%AE%98%E7%BD%91%E7%89%88APP%E4%B8%8B%E8%BD%BD/tabelog/%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.md)
+- [会员订阅与取消](https://github.com/alipymanbu/Android/blob/master/%E5%AE%98%E7%BD%91%E7%89%88APP%E4%B8%8B%E8%BD%BD/tabelog/%E4%BC%9A%E5%91%98%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%96%E6%B6%88.md)
+- [搜索筛选与收藏店铺](https://github.com/alipymanbu/Android/blob/master/%E5%AE%98%E7%BD%91%E7%89%88APP%E4%B8%8B%E8%BD%BD/tabelog/%E6%90%9C%E7%B4%A2%E7%AD%9B%E9%80%89%E4%B8%8E%E6%94%B6%E8%97%8F%E5%BA%97%E9%93%BA.md)
+- [设置中文界面](https://github.com/alipymanbu/Android/blob/master/%E5%AE%98%E7%BD%91%E7%89%88APP%E4%B8%8B%E8%BD%BD/tabelog/%E8%AE%BE%E7%BD%AE%E4%B8%AD%E6%96%87%E7%95%8C%E9%9D%A2.md)
+- [评分3.5是什么水平](https://github.com/alipymanbu/Android/blob/master/%E5%AE%98%E7%BD%91%E7%89%88APP%E4%B8%8B%E8%BD%BD/tabelog/%E8%AF%84%E5%88%863.5%E6%98%AF%E4%BB%80%E4%B9%88%E6%B0%B4%E5%B9%B3.md)
+- [账号注册与登录问题](https://github.com/alipymanbu/Android/blob/master/%E5%AE%98%E7%BD%91%E7%89%88APP%E4%B8%8B%E8%BD%BD/tabelog/%E8%B4%A6%E5%8F%B7%E6%B3%A8%E5%86%8C%E4%B8%8E%E7%99%BB%E5%BD%95%E9%97%AE%E9%A2%98.md)
+- [闪退打不开的排查方法](https://github.com/alipymanbu/Android/blob/master/%E5%AE%98%E7%BD%91%E7%89%88APP%E4%B8%8B%E8%BD%BD/tabelog/%E9%97%AA%E9%80%80%E6%89%93%E4%B8%8D%E5%BC%80%E7%9A%84%E6%8E%92%E6%9F%A5%E6%96%B9%E6%B3%95.md)
+- [餐厅预约与取消流程](https://github.com/alipymanbu/Android/blob/master/%E5%AE%98%E7%BD%91%E7%89%88APP%E4%B8%8B%E8%BD%BD/tabelog/%E9%A4%90%E5%8E%85%E9%A2%84%E7%BA%A6%E4%B8%8E%E5%8F%96%E6%B6%88%E6%B5%81%E7%A8%8B.md)
+- [全部软件目录](https://github.com/alipymanbu/Android/blob/master/%E5%85%A8%E9%83%A8%E8%BD%AF%E4%BB%B6%E7%9B%AE%E5%BD%95.md)
 
-|Column|Type|Options|
-|------|----|-------|
-|pic1|string||
-|pic2|string||
-|pic3|string||
-|pic4|string||
-|pic5|string||
+---
 
-### Association
-- belongs_to :review
-
-
-## relationshipsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|follower_id|integer|add_index :relationships, :follower_id|
-|following_id|integer|add_index :relationships, :following_id|
-|       |   |add_index :relationships, [:follower_id, :following_id], unique: true|
-
-### Association
--belongs_to :follower, class_name: "User"
--belongs_to :following, class_name: "User"
--validates :follower_id, presence: true
--validates :following_id, presence: true
-
-
-## likesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|user_id|references|foreign_key: true, null: false|
-|review_id|references|foreign_key: true, null: false|
-
-### Association
--belongs_to :user
--belongs_to :review
-
-
-## review_tagsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|tag_id|references|foreign_key: true, null: false, index: true|
-|review_id|references|foreign_key: true, null: false, index: true|
-
-### Association
--belongs_to :user
--belongs_to :review
-
-
-## tagsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|
-
-### Association
--has_many :review_tags
--has_many :reviews, through: :review_tags
-
-## usersテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false, unique: true, index: true|
-|avatar|string|
-|background-image|string|
-
-### Association
-- has_many :reviews
-- has_many :like_reviews, through: :likes, source: :review
-- has_many :likes, dependent: :destroy
-- has_many :relationships
-- has_many :following_relationships, foreign_key: "follower_id", class_name: "Relationship", dependent: :destroy
-- has_many :followings, through: :following_relationships
-- has_many :follower_relationships, foreign_key: "following_id", class_name: "Relationship", dependent: :destroy
-- has_many :followers, through: :follower_relationships
-- has_many :reservations
-
-
-## shops table
-|Column|Type|Options|
-|------|----|-------|
-|shop_name|string|null: false, index: true|
-|shop_name_f|string|null: false|
-|phone_number|integer|null: false|
-|prefecture|string|null: false|
-|city_address|string|null: false|
-|building|string||
-|map|text||
-|area|string|null: false|
-|hours|string||
-|closed_day|string||
-|budget|string||
-|reservation|string||
-|payment|string||
-|private_room|integer||
-|capacity|string||
-|chartered|integer||
-|parking|integer||
-|smorking|integer||
-|dish|integer||
-|drink|integer||
-|nomiho|integer||
-|course|integer||
-|service_charge|string||
-|location|integer||
-|facility_atmosphere|integer||
-|kids|integer||
-|homepage|string||
-|official_account1|string||
-|official_account2|string||
-|official_account3|string||
-|open_date|string||
-|others|string||
-|dress_code|string||
-|confirmation_method|integer|null: false|
-|comment|text||
-
-### Association
-- has_many :reservations
-- has_many :reviews
-- has_many :shop-genres
-- has_many :genres, through: : shop_genres
-
-
-## genres table
-|Column|Type|Options|
-|------|----|-------|
-|name|string||
-
-### Association
-- has_many :shop_genres
-- has_many :shops, through: :shop_genres
-
-
-## shop_genres table
-|Column|Type|Options|
-|------|----|-------|
-|shop_id|references|foreign_key: true, null: false, index: true|
-|genre_id|references|foreign_key: true, null: false, index: true|
-
-### Association
-- belongs_to :shop
-- belongs_to :genre
-
+> 本仓库由上游项目 fork 而来，原始说明见[上游仓库](https://github.com/sinobu-kazuya/tabelog)。
